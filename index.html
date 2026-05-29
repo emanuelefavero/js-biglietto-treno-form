@@ -10,5 +10,31 @@
   </head>
   <body>
     <h1>JS Biglietto Treno Form</h1>
+
+    <form>
+      <label for="km">Chilometri da percorrere</label>
+      <input
+        type="number"
+        id="km"
+        name="km"
+        min="1"
+        step="1"
+        required
+        placeholder="Km"
+      />
+
+      <label for="age">Età del passeggero</label>
+      <input
+        type="number"
+        id="age"
+        name="age"
+        min="1"
+        max="120"
+        step="1"
+        required
+        placeholder="Età"
+      />
+      <button type="submit">Calcola prezzo</button>
+    </form>
   </body>
 </html>
