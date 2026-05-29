@@ -29,6 +29,7 @@ const handleSubmit = (event) => {
   const validationMessage = getValidationMessage(km, age);
   if (validationMessage) {
     errorMessage.textContent = validationMessage;
+    result.innerHTML = '';
     result.hidden = true;
     return;
   }

@@ -41,5 +41,6 @@ const formatPrice = (price) => {
   return price.toLocaleString('it-IT', {
     style: 'currency',
     currency: 'EUR',
+    maximumFractionDigits: 2,
   });
 };
