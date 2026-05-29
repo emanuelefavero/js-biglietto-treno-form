@@ -4,8 +4,18 @@ const SENIOR_DISCOUNT = 0.4;
 const MINOR_AGE = 18;
 const SENIOR_AGE = 65;
 
-const isValidData = (km, age) => {
-  return !isNaN(km) && km > 0 && !isNaN(age) && age > 0;
+const getValidationMessage = (km, age) => {
+  const validKm = !isNaN(km) && km > 0;
+  if (!validKm) {
+    return 'Per favore, inserisci un numero valido per i km.';
+  }
+
+  const validAge = !isNaN(age) && age > 0 && age <= 120;
+  if (!validAge) {
+    return "Per favore, inserisci un numero valido per l'età.";
+  }
+
+  return '';
 };
 
 const getDiscount = (age) => {
