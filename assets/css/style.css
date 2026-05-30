@@ -107,21 +107,21 @@ body {
 /* LAYOUT */
 .app {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(21rem, 1.08fr);
+  grid-template-columns: 1fr;
   gap: clamp(1.5rem, 5vw, 5rem);
-  align-items: center;
-  width: min(72rem, calc(100% - 2rem));
+  align-items: start;
+  width: min(100% - 1rem, 72rem);
   min-height: 100vh;
   margin-inline: auto;
   padding-block: clamp(1.5rem, 5vw, 4rem);
 
-  @media (max-width: 512px) {
-    width: min(100% - 1rem, 72rem);
+  @media (min-width: 512px) {
+    width: min(72rem, calc(100% - 2rem));
   }
 
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    align-items: start;
+  @media (min-width: 1024px) {
+    grid-template-columns: minmax(0, 0.92fr) minmax(21rem, 1.08fr);
+    align-items: center;
   }
 }
 
@@ -139,12 +139,12 @@ body {
   }
 
   h1 {
-    max-width: 11ch;
+    max-width: 12ch;
     font-size: clamp(3rem, 8vw, 6.2rem);
     line-height: 0.92;
 
-    @media (max-width: 1024px) {
-      max-width: 12ch;
+    @media (min-width: 1024px) {
+      max-width: 11ch;
     }
   }
 
@@ -158,13 +158,13 @@ body {
 
 .form {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 1rem;
   max-width: 40rem;
   margin-top: 0.75rem;
 
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .field {
@@ -239,17 +239,18 @@ body {
   position: relative;
   display: grid;
   gap: 1.25rem;
-  min-height: 34rem;
+  min-height: 31rem;
   padding: clamp(1.5rem, 4vw, 2rem);
   overflow: hidden;
+  border-radius: 1.55rem;
 
-  @media (max-width: 512px) {
-    min-height: 31rem;
-    border-radius: 1.55rem;
+  @media (min-width: 512px) {
+    min-height: 32rem;
   }
 
-  @media (max-width: 1024px) {
-    min-height: 32rem;
+  @media (min-width: 1024px) {
+    min-height: 34rem;
+    border-radius: var(--radius-card);
   }
 
   .ticket-shape {
@@ -290,15 +291,19 @@ body {
 
   .ticket-header {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     gap: 0.8rem;
     align-items: center;
 
-    @media (max-width: 512px) {
-      grid-template-columns: auto 1fr;
+    strong {
+      grid-column: 1 / -1;
+    }
+
+    @media (min-width: 512px) {
+      grid-template-columns: auto 1fr auto;
 
       strong {
-        grid-column: 1 / -1;
+        grid-column: auto;
       }
     }
 
@@ -349,11 +354,11 @@ body {
 
   .details {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.35rem 2rem;
 
-    @media (max-width: 512px) {
-      grid-template-columns: 1fr;
+    @media (min-width: 512px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     div {
