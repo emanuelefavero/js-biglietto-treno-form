@@ -165,6 +165,8 @@ body {
   }
 
   .button {
+    isolation: isolate;
+    position: relative;
     grid-column: 1 / -1;
     min-height: 4rem;
     padding: 0.9rem 1.2rem;
@@ -175,9 +177,21 @@ body {
     font-weight: 900;
     text-align: center;
     box-shadow: 0 8px 0 var(--color-ink);
+    outline: none;
     transition:
       box-shadow 160ms ease,
       transform 160ms ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      inset: -4px -4px -12px;
+      border-radius: calc(var(--radius-control) + 4px);
+      background-color: rgb(255 223 85 / 55%);
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
 
     &:hover {
       transform: translateY(3px);
@@ -185,8 +199,9 @@ body {
     }
 
     &:focus-visible {
-      outline: 4px solid rgb(255 223 85 / 55%);
-      outline-offset: 4px;
+      &::before {
+        opacity: 1;
+      }
     }
   }
 }
