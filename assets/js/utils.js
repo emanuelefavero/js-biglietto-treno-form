@@ -3,11 +3,12 @@ const MINOR_DISCOUNT = 0.2;
 const SENIOR_DISCOUNT = 0.4;
 const MINOR_AGE = 18;
 const SENIOR_AGE = 65;
+const MAX_KM = 5000;
 
 const getValidationMessage = (km, age) => {
-  const validKm = !isNaN(km) && km > 0;
+  const validKm = !isNaN(km) && km > 0 && km <= MAX_KM;
   if (!validKm) {
-    return 'Per favore, inserisci un numero valido per i km.';
+    return `Per favore, inserisci un numero di km valido, da 1 a ${MAX_KM}.`;
   }
 
   const validAge = !isNaN(age) && age > 0 && age <= 120;
