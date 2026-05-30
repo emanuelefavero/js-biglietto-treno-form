@@ -2,8 +2,35 @@ const form = document.querySelector('form');
 const errorMessage = document.getElementById('error-message');
 const result = document.getElementById('result');
 
+const getTicketShapeTemplate = () => {
+  return /*html*/ `
+      <svg
+        class="ticket-shape ticket-fill"
+        viewBox="0 0 640 760"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M40 1 H600 Q639 1 639 40 V220 A24 24 0 0 0 639 268 V720 Q639 759 600 759 H40 Q1 759 1 720 V268 A24 24 0 0 0 1 220 V40 Q1 1 40 1 Z"
+        />
+      </svg>
+      <svg
+        class="ticket-shape ticket-outline"
+        viewBox="0 0 640 760"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M40 1 H600 Q639 1 639 40 V220 A24 24 0 0 0 639 268 V720 Q639 759 600 759 H40 Q1 759 1 720 V268 A24 24 0 0 0 1 220 V40 Q1 1 40 1 Z"
+        />
+      </svg>
+    `;
+};
+
 const getPlaceholderTemplate = () => {
   return /*html*/ `
+      ${getTicketShapeTemplate()}
+
       <div class="ticket-header">
         <span class="icon"><i class="bi bi-train-front-fill"></i></span>
         <p>Boolean Express</p>
@@ -39,6 +66,8 @@ const getPlaceholderTemplate = () => {
 
 const getResultTemplate = (km, age, price) => {
   return /*html*/ `
+      ${getTicketShapeTemplate()}
+
       <div class="ticket-header">
         <span class="icon"><i class="bi bi-train-front-fill"></i></span>
         <p>Boolean Express</p>
