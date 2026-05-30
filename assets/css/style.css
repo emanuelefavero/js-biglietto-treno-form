@@ -1,22 +1,22 @@
 /* TOKENS */
 :root {
-  --background: #f8f6eb;
+  --background: #f7e8e7;
   --foreground: #292929;
   --card: #ffffff;
-  --card-accent: #f5f5ee;
-  --muted: #a4a4a4;
-  --muted-foreground: #6f6f6a;
+  --card-accent: #f6f4f4;
+  --muted: #5a5a5a;
+  --muted-foreground: #666666;
   --border: #d8d8d1;
-  --primary: #ffdf55;
-  --primary-focus: #ffeb7a;
-  --brand: #ef493f;
+  --primary: #fff59f;
+  --primary-focus: rgb(255, 234, 143);
+  --brand: #444444;
   --accent: #51e5e0;
-  --error: #d9291c;
+  --error: #d91c38;
   --foreground-rgb: 41 41 41;
-  --primary-rgb: 255 223 85;
-  --accent-rgb: 81 229 224;
+  --primary-rgb: 255 203 95;
+  --accent-rgb: 150 103 255;
   --shadow-card: 0 24px 70px rgb(var(--foreground-rgb) / 12%);
-  --radius-card: 2rem;
+  --radius-card: 2.15rem;
   --radius-control: 1.05rem;
 }
 
@@ -96,8 +96,8 @@ body {
       ),
       radial-gradient(
         circle at 88% 78%,
-        rgb(var(--accent-rgb) / 34%),
-        transparent 19rem
+        rgb(var(--accent-rgb) / 14%),
+        transparent 40rem
       ),
       var(--background);
   }
@@ -356,6 +356,7 @@ body {
     border-radius: 0 0 calc(var(--radius-card) - 0.2rem)
       calc(var(--radius-card) - 0.2rem);
     background-color: var(--card-accent);
+    opacity: 0.8;
 
     &::before {
       content: '';
