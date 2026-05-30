@@ -1,3 +1,10 @@
+/* 
+BREAKPOINTS:
+- 368px: minimum app width
+- 512px: tablet
+- 1024px: desktop
+*/
+
 /* TOKENS */
 :root {
   --background: #f7e8e7;
@@ -76,28 +83,23 @@ p {
 
 /* BASE */
 body {
-  min-width: 350px;
+  min-width: 368px;
   min-height: 100vh;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   padding-inline: 1rem;
   color: var(--foreground);
-
   background: var(--background);
 
-  @media (min-width: 350px) {
+  @media (min-width: 368px) {
     background:
       radial-gradient(
         circle at 12% 18%,
         var(--primary-soft),
         transparent 21rem
       ),
-      radial-gradient(
-        circle at 88% 78%,
-        var(--accent-soft),
-        transparent 40rem
-      ),
+      radial-gradient(circle at 88% 78%, var(--accent-soft), transparent 40rem),
       var(--background);
   }
 }
@@ -112,6 +114,15 @@ body {
   min-height: 100vh;
   margin-inline: auto;
   padding-block: clamp(1.5rem, 5vw, 4rem);
+
+  @media (max-width: 512px) {
+    width: min(100% - 1rem, 72rem);
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
 }
 
 /* COMPONENTS */
@@ -131,6 +142,10 @@ body {
     max-width: 11ch;
     font-size: clamp(3rem, 8vw, 6.2rem);
     line-height: 0.92;
+
+    @media (max-width: 1024px) {
+      max-width: 12ch;
+    }
   }
 
   .intro {
@@ -147,6 +162,10 @@ body {
   gap: 1rem;
   max-width: 40rem;
   margin-top: 0.75rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 
   .field {
     display: grid;
@@ -224,6 +243,15 @@ body {
   padding: clamp(1.5rem, 4vw, 2rem);
   overflow: hidden;
 
+  @media (max-width: 512px) {
+    min-height: 31rem;
+    border-radius: 1.55rem;
+  }
+
+  @media (max-width: 1024px) {
+    min-height: 32rem;
+  }
+
   .ticket-shape {
     position: absolute;
     inset: 0;
@@ -265,6 +293,14 @@ body {
     grid-template-columns: auto 1fr auto;
     gap: 0.8rem;
     align-items: center;
+
+    @media (max-width: 512px) {
+      grid-template-columns: auto 1fr;
+
+      strong {
+        grid-column: 1 / -1;
+      }
+    }
 
     .icon {
       display: grid;
@@ -316,6 +352,10 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.35rem 2rem;
 
+    @media (max-width: 512px) {
+      grid-template-columns: 1fr;
+    }
+
     div {
       display: grid;
       gap: 0.25rem;
@@ -365,48 +405,6 @@ body {
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-    }
-  }
-}
-
-@media (max-width: 62rem) {
-  .app {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-
-  .panel h1 {
-    max-width: 12ch;
-  }
-
-  .form {
-    grid-template-columns: 1fr;
-  }
-
-  .ticket {
-    min-height: 32rem;
-  }
-}
-
-@media (max-width: 32rem) {
-  .app {
-    width: min(100% - 1rem, 72rem);
-  }
-
-  .ticket {
-    min-height: 31rem;
-    border-radius: 1.55rem;
-
-    .ticket-header {
-      grid-template-columns: auto 1fr;
-
-      strong {
-        grid-column: 1 / -1;
-      }
-    }
-
-    .details {
-      grid-template-columns: 1fr;
     }
   }
 }
