@@ -1,20 +1,23 @@
 /* TOKENS */
 :root {
-  --background: #f7e8e7;
-  --foreground: #292929;
+  --background: #eceff5;
+  --foreground: #272728;
   --card: #fff;
-  --card-accent: #f6f4f4;
-  --muted: #5a5a5a;
-  --muted-foreground: #666;
-  --border: #d8d8d1;
-  --primary: #fff59f;
-  --primary-focus: #ffea8f;
+  --card-accent: #eeeff3;
+  --muted: #545960;
+  --muted-foreground: #5d5f65;
+  --border: #d1d5d8;
+  --border-focus: #788188;
+  --primary: #01a98f;
+  --primary-focus: #008c77;
+  --primary-shadow: #037866;
+  --primary-soft: #effffa;
+  --primary-border: rgb(20 247 194 / 0.4);
   --brand: #444;
   --error: #d91c38;
-  --foreground-soft: rgb(41 41 41 / 0.12);
-  --primary-soft: rgb(255 203 95 / 0.45);
-  --accent-soft: rgb(150 103 255 / 0.14);
-  --shadow-card: 0 24px 70px var(--foreground-soft);
+  --foreground-soft: rgb(94 97 100 / 0.1);
+  --accent-soft: rgb(81 96 117 / 0.3);
+  --selection: rgb(1 169 143 / 0.2);
   --radius-card: 2.15rem;
   --radius-control: 1.05rem;
 }
@@ -37,7 +40,7 @@ BREAKPOINTS
 
 *::selection {
   color: var(--foreground);
-  background-color: var(--primary-soft);
+  background-color: var(--selection);
 }
 
 button {
@@ -200,39 +203,46 @@ body {
     padding: 0.9rem 1.05rem;
     border: 1.5px solid var(--border);
     background-color: var(--card);
-    box-shadow: 0 10px 28px var(--foreground-soft);
     transition:
       border-color 160ms ease,
       box-shadow 160ms ease,
       transform 160ms ease;
 
     &:focus {
-      border-color: var(--foreground);
-      box-shadow: 0 0 0 4px var(--primary-soft);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--primary-soft);
       transform: translateY(-1px);
+    }
+
+    &:not(:focus, :placeholder-shown):invalid {
+      border-color: var(--error);
     }
   }
 
   .button {
     grid-column: 1 / -1;
     padding: 0.9rem 1.2rem;
-    border: 2px solid var(--foreground);
+    border: 2px solid var(--primary-border);
     background-color: var(--primary);
+    color: var(--card);
     font-weight: 900;
     text-align: center;
-    box-shadow: 0 8px 0 var(--foreground);
+    box-shadow: 0 4px 0 var(--primary-shadow);
     transition:
       background-color 160ms ease,
       box-shadow 160ms ease,
       transform 160ms ease;
 
-    &:hover {
-      transform: translateY(3px);
-      box-shadow: 0 5px 0 var(--foreground);
+    &:hover,
+    &:focus-visible {
+      transform: translateY(1px);
+      background-color: var(--primary-focus);
+      box-shadow: 0 3px 0 var(--primary-shadow);
     }
 
-    &:focus-visible {
-      background-color: var(--primary-focus);
+    &:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 var(--primary-shadow);
     }
   }
 }
