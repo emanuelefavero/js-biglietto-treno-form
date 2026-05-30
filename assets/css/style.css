@@ -1,10 +1,3 @@
-/* 
-BREAKPOINTS:
-- 368px: minimum app width
-- 512px: tablet
-- 1024px: desktop
-*/
-
 /* TOKENS */
 :root {
   --background: #f7e8e7;
@@ -36,20 +29,20 @@ BREAKPOINTS:
 }
 
 *::selection {
-  background-color: var(--primary-soft);
   color: var(--foreground);
+  background-color: var(--primary-soft);
 }
 
 button {
+  padding: 0;
+  border: 0;
   border-radius: 0;
-  text-align: inherit;
+  color: inherit;
   background: none;
   box-shadow: none;
-  padding: 0;
-  cursor: pointer;
-  border: none;
-  color: inherit;
   font: inherit;
+  text-align: inherit;
+  cursor: pointer;
 }
 
 input,
@@ -85,12 +78,12 @@ p {
 body {
   min-width: 368px;
   min-height: 100vh;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
   padding-inline: 1rem;
   color: var(--foreground);
   background: var(--background);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 
   @media (min-width: 368px) {
     background:
@@ -125,7 +118,7 @@ body {
   }
 }
 
-/* COMPONENTS */
+/* INTRO */
 .panel {
   display: grid;
   gap: 1.25rem;
@@ -156,6 +149,7 @@ body {
   }
 }
 
+/* FORM */
 .form {
   display: grid;
   grid-template-columns: 1fr;
@@ -170,48 +164,48 @@ body {
   .field {
     display: grid;
     gap: 0.5rem;
+  }
 
-    label {
-      color: var(--muted-foreground);
-      font-size: 0.82rem;
-      font-weight: 800;
-    }
+  label {
+    color: var(--muted-foreground);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
 
-    input {
-      width: 100%;
-      min-height: 4rem;
-      padding: 0.9rem 1.05rem;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-control);
-      color: var(--foreground);
-      background-color: var(--card);
-      outline: none;
-      box-shadow: 0 10px 28px var(--foreground-soft);
-      transition:
-        border-color 160ms ease,
-        box-shadow 160ms ease,
-        transform 160ms ease;
+  input,
+  .button {
+    min-height: 4rem;
+    border-radius: var(--radius-control);
+    color: var(--foreground);
+    outline: none;
+  }
 
-      &:focus {
-        border-color: var(--foreground);
-        box-shadow: 0 0 0 4px var(--primary-soft);
-        transform: translateY(-1px);
-      }
+  input {
+    width: 100%;
+    padding: 0.9rem 1.05rem;
+    border: 1.5px solid var(--border);
+    background-color: var(--card);
+    box-shadow: 0 10px 28px var(--foreground-soft);
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      transform 160ms ease;
+
+    &:focus {
+      border-color: var(--foreground);
+      box-shadow: 0 0 0 4px var(--primary-soft);
+      transform: translateY(-1px);
     }
   }
 
   .button {
     grid-column: 1 / -1;
-    min-height: 4rem;
     padding: 0.9rem 1.2rem;
     border: 2px solid var(--foreground);
-    border-radius: var(--radius-control);
     background-color: var(--primary);
-    color: var(--foreground);
     font-weight: 900;
     text-align: center;
     box-shadow: 0 8px 0 var(--foreground);
-    outline: none;
     transition:
       background-color 160ms ease,
       box-shadow 160ms ease,
@@ -234,23 +228,27 @@ body {
   font-weight: 800;
 }
 
+/* TICKET */
 .ticket {
+  --ticket-padding: clamp(1.5rem, 4vw, 2rem);
+  --ticket-radius: 1.55rem;
+
   isolation: isolate;
   position: relative;
   display: grid;
   gap: 1.25rem;
   min-height: 31rem;
-  padding: clamp(1.5rem, 4vw, 2rem);
+  padding: var(--ticket-padding);
   overflow: hidden;
-  border-radius: 1.55rem;
+  border-radius: var(--ticket-radius);
 
   @media (min-width: 512px) {
     min-height: 32rem;
   }
 
   @media (min-width: 1024px) {
+    --ticket-radius: var(--radius-card);
     min-height: 34rem;
-    border-radius: var(--radius-card);
   }
 
   .ticket-shape {
@@ -295,16 +293,8 @@ body {
     gap: 0.8rem;
     align-items: center;
 
-    strong {
-      grid-column: 1 / -1;
-    }
-
     @media (min-width: 512px) {
       grid-template-columns: auto 1fr auto;
-
-      strong {
-        grid-column: auto;
-      }
     }
 
     .icon {
@@ -320,6 +310,14 @@ body {
     strong {
       font-size: clamp(1.1rem, 2.6vw, 1.5rem);
       font-weight: 900;
+    }
+
+    strong {
+      grid-column: 1 / -1;
+
+      @media (min-width: 512px) {
+        grid-column: auto;
+      }
     }
   }
 
@@ -394,12 +392,13 @@ body {
     place-items: center;
     align-self: end;
     min-height: 5.8rem;
-    margin: auto -2rem -2rem;
-    padding: 1rem 2rem;
+    margin: auto calc(var(--ticket-padding) * -1)
+      calc(var(--ticket-padding) * -1);
+    padding: 1rem var(--ticket-padding);
     overflow: hidden;
     border-top: 1.5px solid var(--border);
-    border-radius: 0 0 calc(var(--radius-card) - 0.2rem)
-      calc(var(--radius-card) - 0.2rem);
+    border-radius: 0 0 calc(var(--ticket-radius) - 0.2rem)
+      calc(var(--ticket-radius) - 0.2rem);
     background-color: var(--card-accent);
     opacity: 0.8;
 
