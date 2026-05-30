@@ -2,20 +2,73 @@ const form = document.querySelector('form');
 const errorMessage = document.getElementById('error-message');
 const result = document.getElementById('result');
 
+const getPlaceholderTemplate = () => {
+  return /*html*/ `
+      <div class="ticket-header">
+        <span class="icon"><i class="bi bi-train-front-fill"></i></span>
+        <p>Boolean Express</p>
+        <strong>--</strong>
+      </div>
+
+      <div class="ticket-route">
+        <span>KM</span>
+        <span class="route-line">0.21 €/km</span>
+        <span>ETA</span>
+      </div>
+
+      <dl class="details">
+        <div>
+          <dt>Chilometri</dt>
+          <dd>-- km</dd>
+        </div>
+
+        <div>
+          <dt>Età passeggero</dt>
+          <dd>-- anni</dd>
+        </div>
+
+        <div class="price">
+          <dt>Prezzo finale</dt>
+          <dd><strong>--</strong></dd>
+        </div>
+      </dl>
+
+      <div class="barcode" aria-hidden="true"></div>
+    `;
+};
+
 const getResultTemplate = (km, age, price) => {
   return /*html*/ `
-      <h2>Riepilogo biglietto</h2>
+      <div class="ticket-header">
+        <span class="icon"><i class="bi bi-train-front-fill"></i></span>
+        <p>Boolean Express</p>
+        <strong>${price}</strong>
+      </div>
 
-      <dl>
-        <dt>Chilometri</dt>
-        <dd>${km} km</dd>
+      <div class="ticket-route">
+        <span>${km}</span>
+        <span class="route-line">0.21 €/km</span>
+        <span>${age}</span>
+      </div>
 
-        <dt>Età passeggero</dt>
-        <dd>${age} anni</dd>
+      <dl class="details">
+        <div>
+          <dt>Chilometri</dt>
+          <dd>${km} km</dd>
+        </div>
 
-        <dt>Prezzo finale</dt>
-        <dd><strong>${price}</strong></dd>
+        <div>
+          <dt>Età passeggero</dt>
+          <dd>${age} anni</dd>
+        </div>
+
+        <div class="price">
+          <dt>Prezzo finale</dt>
+          <dd><strong>${price}</strong></dd>
+        </div>
       </dl>
+
+      <div class="barcode" aria-hidden="true"></div>
     `;
 };
 
@@ -29,8 +82,7 @@ const handleSubmit = (event) => {
   const validationMessage = getValidationMessage(km, age);
   if (validationMessage) {
     errorMessage.textContent = validationMessage;
-    result.innerHTML = '';
-    result.hidden = true;
+    result.innerHTML = getPlaceholderTemplate();
     return;
   }
 
@@ -47,4 +99,5 @@ const handleSubmit = (event) => {
   form.elements.km.focus();
 };
 
+result.innerHTML = getPlaceholderTemplate();
 form.addEventListener('submit', handleSubmit);
