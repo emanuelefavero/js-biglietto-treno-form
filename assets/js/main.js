@@ -40,7 +40,7 @@ const getPlaceholderTemplate = () => {
       <div class="ticket-route">
         <span>KM</span>
         <span class="route-line">0.21 €/km</span>
-        <span>ETA</span>
+        <span>ETÀ</span>
       </div>
 
       <dl class="details">
