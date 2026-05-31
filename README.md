@@ -1,16 +1,26 @@
 # JS Biglietto Treno Form
 
-JavaScript exercise from my web development course.
+Form-based JavaScript exercise from my web development course.
 
-The assignment asks for a form-based program that calculates the price of a train ticket based on the number of kilometers to travel and the passenger's age.
+The app calculates a train ticket price from travel kilometers and passenger age.
+
+## Demo
+
+- [View on GitHub Pages](https://emanuelefavero.github.io/js-biglietto-treno-form/)
+
+## Preview
+
+<img src="mockup.png" alt="screenshot" width="300" />
 
 ## Solution
 
 - Open `index.html` in a browser to use the app.
 - Form logic is handled in `assets/js/main.js`.
 - Calculation helpers are in `assets/js/utils.js`.
+- Template functions for rendering the ticket are in `assets/js/templates.js`.
+- Styling is in `assets/css/style.css`.
 
-## Goal
+## Assignment
 
 The app asks the user for:
 
@@ -49,3 +59,12 @@ It then calculates the final ticket price using these rules:
 - The ticket output uses a placeholder state before the first valid calculation.
 - SVG is used only for the ticket shape; the ticket content remains regular HTML.
 - CSS custom properties, nesting, and semantic class names are used to keep the styling organized.
+- The app is responsive and ensures good accessibility and readability across devices.
+
+&nbsp;
+
+---
+
+&nbsp;
+
+[**Go To Top &nbsp; ⬆️**](#js-biglietto-treno-form)
