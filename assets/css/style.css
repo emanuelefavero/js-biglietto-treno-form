@@ -8,6 +8,7 @@
   --muted-foreground: #5d5f65;
   --border: #d1d5d8;
   --border-focus: #788188;
+  --printer: #e6edf1;
   --primary: #01a98f;
   --primary-focus: #008c77;
   --primary-shadow: #037866;
@@ -253,34 +254,80 @@ body {
   font-weight: 800;
 }
 
-/* TICKET */
+.ticket-stage {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: 35rem;
+
+  @media (width >= 1024px) {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .printer-slot {
+    position: absolute;
+    inset: 0 -1px auto;
+    z-index: 3;
+    height: 0.3rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--printer);
+    box-shadow:
+      inset 0 2px 5px rgb(0 0 0 / 0.14),
+      0 3px 10px rgb(0 0 0 / 0.08);
+    transform: translateY(-45%);
+
+    /* Printer slot shadow */
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 100% 0 auto;
+      height: 1rem;
+      background: linear-gradient(rgba(17, 17, 18, 0.05), transparent);
+      pointer-events: none;
+    }
+  }
+}
+
+.ticket-viewport {
+  overflow: hidden;
+}
+
 .ticket {
   --ticket-padding-block: clamp(1.5rem, 4vw, 2rem);
   --ticket-padding-inline: clamp(2rem, 4vw, 2.5rem);
-  --ticket-radius: 1.55rem;
+  --ticket-top-radius: 0.45rem;
+  --ticket-bottom-radius: 1.55rem;
 
   isolation: isolate;
   position: relative;
   display: grid;
   gap: 1.25rem;
-  justify-self: center;
   width: 100%;
-  max-width: 35rem;
   min-height: 31rem;
   padding: var(--ticket-padding-block) var(--ticket-padding-inline);
   overflow: hidden;
-  border-radius: var(--ticket-radius);
+  border-radius: var(--ticket-top-radius) var(--ticket-top-radius)
+    var(--ticket-bottom-radius) var(--ticket-bottom-radius);
+  transform-origin: top;
 
   @media (width >= 512px) {
     min-height: 32rem;
   }
 
   @media (width >= 1024px) {
-    --ticket-radius: var(--radius-card);
+    --ticket-bottom-radius: var(--radius-card);
 
-    justify-self: stretch;
-    max-width: none;
     min-height: 34rem;
+  }
+
+  &.is-placeholder {
+    opacity: 0.58;
+  }
+
+  &.is-printing {
+    animation: ticket-print 1300ms linear both;
   }
 
   .ticket-shape {
@@ -429,8 +476,7 @@ body {
     padding: 1rem var(--ticket-padding-inline);
     overflow: hidden;
     border-top: 1.5px solid var(--border);
-    border-radius: 0 0 calc(var(--ticket-radius) - 0.2rem)
-      calc(var(--ticket-radius) - 0.2rem);
+    border-radius: 0 0 var(--ticket-bottom-radius) var(--ticket-bottom-radius);
     background-color: var(--card-accent);
     opacity: 0.8;
 
@@ -443,5 +489,50 @@ body {
       background-position: center;
       background-size: contain;
     }
+  }
+}
+
+/* ANIMATIONS */
+@keyframes ticket-print {
+  0% {
+    transform: translateY(-96%);
+  }
+
+  18% {
+    transform: translateY(-78%);
+  }
+
+  24% {
+    transform: translateY(-78%);
+  }
+
+  42% {
+    transform: translateY(-54%);
+  }
+
+  47% {
+    transform: translateY(-56%);
+  }
+
+  68% {
+    transform: translateY(-24%);
+  }
+
+  74% {
+    transform: translateY(-24%);
+  }
+
+  88% {
+    transform: translateY(-8%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket.is-printing {
+    animation: none;
   }
 }
