@@ -1,4 +1,5 @@
 const form = document.querySelector('form');
+const routeSelect = document.getElementById('km');
 const errorMessage = document.getElementById('error-message');
 const result = document.getElementById('result');
 
@@ -18,18 +19,31 @@ const handleSubmit = (event) => {
     return;
   }
 
+  const basePrice = calculateBasePrice(km);
+  const discount = getDiscount(age);
   const price = calculatePrice(km, age);
-  const formattedPrice = formatPrice(price);
+  const route = getRouteInfo(routeSelect);
+
+  const ticket = {
+    km,
+    age,
+    departure: route.departure,
+    arrival: route.arrival,
+    tariff: getTariffLabel(age),
+    date: formatDate(new Date()),
+    basePrice: formatPrice(basePrice),
+    discount: formatDiscount(discount),
+    finalPrice: formatPrice(price),
+    saving: formatPrice(basePrice - price),
+    hasDiscount: discount > 0,
+  };
 
   // Render
   errorMessage.textContent = '';
   result.classList.remove('is-placeholder', 'is-printing');
-  result.innerHTML = getResultTemplate(km, age, formattedPrice);
+  result.innerHTML = getResultTemplate(ticket);
   void result.offsetWidth; /* force animation restart on next submit */
   result.classList.add('is-printing');
-
-  // Reset
-  form.reset();
 };
 
 result.classList.add('is-placeholder');

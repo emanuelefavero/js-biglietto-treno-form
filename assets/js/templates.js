@@ -29,30 +29,54 @@ const getPlaceholderTemplate = () => {
 
       <div class="ticket-header">
         <span class="icon"><i class="bi bi-train-front-fill"></i></span>
-        <p>Boolean Express</p>
-        <strong>--</strong>
+        <p>Tariffa</p>
+        <strong>--/--/----</strong>
       </div>
 
       <div class="ticket-route">
-        <span>KM</span>
-        <span class="route-line">0.21 €/km</span>
-        <span>ETÀ</span>
+        <span class="route-point">
+          <strong>Partenza</strong>
+          <small>Origine</small>
+        </span>
+        <span class="route-line">
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          <small>-- km</small>
+        </span>
+        <span class="route-point">
+          <strong>Arrivo</strong>
+          <small>Destinazione</small>
+        </span>
       </div>
 
       <dl class="details">
-        <div>
-          <dt>Chilometri</dt>
-          <dd>-- km</dd>
-        </div>
+        <div class="details-list">
+          <div>
+            <dt>Età passeggero</dt>
+            <dd>-- anni</dd>
+          </div>
 
-        <div>
-          <dt>Età passeggero</dt>
-          <dd>-- anni</dd>
+          <div>
+            <dt>Tariffa km</dt>
+            <dd>0,21 €/km</dd>
+          </div>
+
+          <div>
+            <dt>Totale stimato</dt>
+            <dd>
+              <span class="price-summary">
+                <span class="base-price">--</span>
+                <span class="discount">--</span>
+              </span>
+            </dd>
+          </div>
         </div>
 
         <div class="price">
-          <dt>Prezzo finale</dt>
-          <dd><strong>--</strong></dd>
+          <dd>
+            <span class="final-price">
+              <strong>--</strong>
+            </span>
+          </dd>
         </div>
       </dl>
 
@@ -60,36 +84,66 @@ const getPlaceholderTemplate = () => {
     `;
 };
 
-const getResultTemplate = (km, age, price) => {
+const getResultTemplate = (ticket) => {
+  const emptyClass = ticket.hasDiscount ? '' : 'is-empty';
+
   return /*html*/ `
       ${getTicketShapeTemplate()}
 
       <div class="ticket-header">
         <span class="icon"><i class="bi bi-train-front-fill"></i></span>
-        <p>Boolean Express</p>
-        <strong>${price}</strong>
+        <p>${ticket.tariff}</p>
+        <strong>${ticket.date}</strong>
       </div>
 
       <div class="ticket-route">
-        <span>${km}</span>
-        <span class="route-line">0.21 €/km</span>
-        <span>${age}</span>
+        <span class="route-point">
+          <strong>${ticket.departure}</strong>
+          <small>Partenza</small>
+        </span>
+        <span class="route-line">
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          <small>${ticket.km} km</small>
+        </span>
+        <span class="route-point">
+          <strong>${ticket.arrival}</strong>
+          <small>Arrivo</small>
+        </span>
       </div>
 
       <dl class="details">
-        <div>
-          <dt>Chilometri</dt>
-          <dd>${km} km</dd>
-        </div>
+        <div class="details-list">
+          <div>
+            <dt>Età passeggero</dt>
+            <dd>${ticket.age} anni</dd>
+          </div>
 
-        <div>
-          <dt>Età passeggero</dt>
-          <dd>${age} anni</dd>
+          <div>
+            <dt>Tariffa km</dt>
+            <dd>0,21 €/km</dd>
+          </div>
+
+          <div>
+            <dt>Totale stimato</dt>
+            <dd>
+              <span class="price-summary">
+                <span class="base-price ${emptyClass}">${ticket.basePrice}</span>
+                <span class="discount ${emptyClass}">${ticket.discount}</span>
+              </span>
+            </dd>
+          </div>
         </div>
 
         <div class="price">
-          <dt>Prezzo finale</dt>
-          <dd><strong>${price}</strong></dd>
+          <dd>
+            <span class="final-price">
+              <strong>${ticket.finalPrice}</strong>
+              <span class="saving ${emptyClass}">
+                <span>Risparmio</span>
+                <strong>${ticket.saving}</strong>
+              </span>
+            </span>
+          </dd>
         </div>
       </dl>
 

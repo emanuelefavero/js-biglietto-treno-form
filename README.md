@@ -2,7 +2,7 @@
 
 Form-based JavaScript exercise from my web development course.
 
-The app calculates a train ticket price from travel kilometers and passenger age.
+The app estimates a train fare from a selected route distance and passenger age.
 
 ## Demo
 
@@ -22,17 +22,18 @@ The app calculates a train ticket price from travel kilometers and passenger age
 
 ## Assignment
 
-The app asks the user for:
+The base exercise asks for:
 
 - the number of kilometers to travel;
 - the passenger's age.
 
-It then calculates the final ticket price using these rules:
+The teacher also encouraged us to make the solution our own, either with a
+similar implementation or a different approach. This version turns the exercise into a small fare estimator: the user selects a predefined route, and the route distance is used for the original calculation rules:
 
 - base price: `0.21 €` per km;
 - `20%` discount for minors;
 - `40%` discount for passengers aged 65 or older;
-- final price formatted with a maximum of two decimal digits.
+- final price formatted in Euro.
 
 ## Milestones
 
@@ -50,16 +51,12 @@ It then calculates the final ticket price using these rules:
 
 ## Technical Notes
 
-- Form values are read with `FormData` and converted with `Number`.
-- `novalidate` is used so validation messages can be rendered in the page.
-- Validation returns a specific error message or an empty string when the data is valid.
-- Ticket rules are stored as constants: price per km, discount percentages, and age thresholds.
-- Calculation, discount selection, validation, and price formatting are split into small functions.
-- `toLocaleString('it-IT')` formats the final price as an Italian Euro currency value.
-- The ticket output uses a placeholder state before the first valid calculation.
-- SVG is used only for the ticket shape; the ticket content remains regular HTML.
-- CSS custom properties, nesting, and semantic class names are used to keep the styling organized.
-- The app is responsive and ensures good accessibility and readability across devices.
+- Routes are handled with a simple `<select>`: each option value stores the km distance.
+- Form values are read with `FormData`, validated, and converted with `Number`.
+- Price rules, validation, formatting, and ticket labels are split into small helper functions.
+- The ticket is rendered from a single data object prepared in `main.js`.
+- The ticket shows route, tariff, base price, discount, savings, and final estimated price.
+- CSS custom properties, nesting, and semantic class names keep the layout organized and responsive.
 
 &nbsp;
 
