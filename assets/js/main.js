@@ -1,15 +1,21 @@
 const form = document.querySelector('form');
-const routeSelect = document.getElementById('km');
+const routeSelect = document.getElementById('route');
 const errorMessage = document.getElementById('error-message');
 const result = document.getElementById('result');
 
+/**
+ * Orchestrator submit handler: reads form values, validates them, prepares the data object for rendering, and renders the result or error message.
+ */
 const handleSubmit = (event) => {
   event.preventDefault();
 
+  // Read
   const formData = new FormData(form);
-  const km = Number(formData.get('km'));
+  const route = getSelectedRoute(formData.get('route'));
+  const km = route ? route.km : NaN; // Get km from selected route
   const age = Number(formData.get('age'));
 
+  // Validate
   const validationMessage = getValidationMessage(km, age);
   if (validationMessage) {
     errorMessage.textContent = validationMessage;
@@ -19,10 +25,10 @@ const handleSubmit = (event) => {
     return;
   }
 
+  // Prepare data
   const basePrice = calculateBasePrice(km);
   const discount = getDiscount(age);
   const price = calculatePrice(km, age);
-  const route = getRouteInfo(routeSelect);
 
   const ticket = {
     km,
@@ -41,11 +47,13 @@ const handleSubmit = (event) => {
   // Render
   errorMessage.textContent = '';
   result.classList.remove('is-placeholder', 'is-printing');
-  result.innerHTML = getResultTemplate(ticket);
-  void result.offsetWidth; /* force animation restart on next submit */
+  result.innerHTML = getResultTemplate(ticket); // Render result
+  void result.offsetWidth; // Force animation restart on next submit
   result.classList.add('is-printing');
 };
 
-result.classList.add('is-placeholder');
-result.innerHTML = getPlaceholderTemplate();
+// Initial setup
+result.classList.add('is-placeholder'); // Result initial state (placeholder)
+result.innerHTML = getPlaceholderTemplate(); // Render placeholder
+routeSelect.innerHTML += getRouteOptionsTemplate(); // Render route options
 form.addEventListener('submit', handleSubmit);

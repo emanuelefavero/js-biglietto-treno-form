@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- JS -->
+    <script defer src="assets/js/data.js"></script>
     <script defer src="assets/js/utils.js"></script>
     <script defer src="assets/js/templates.js"></script>
     <script defer src="assets/js/main.js"></script>
@@ -52,17 +53,10 @@
         <!-- Form -->
         <form class="form" novalidate>
           <div class="field">
-            <label for="km">Tratta</label>
-            <select id="km" name="km" required>
+            <label for="route">Tratta</label>
+            <select id="route" name="route" required>
               <option value="">Scegli una tratta</option>
-              <option value="564">Milano - Roma</option>
-              <option value="140">Milano - Torino</option>
-              <option value="270">Milano - Venezia</option>
-              <option value="225">Roma - Napoli</option>
-              <option value="275">Roma - Firenze</option>
-              <option value="110">Bologna - Firenze</option>
-              <option value="155">Bologna - Venezia</option>
-              <option value="260">Napoli - Bari</option>
+              <!-- Options are rendered dynamically with JavaScript -->
             </select>
           </div>
 

@@ -1,3 +1,21 @@
+const getRouteOptionTemplate = (route, index) => {
+  return /*html*/ `
+      <option value="${index}">
+        ${route.departure} - ${route.arrival}
+      </option>
+    `;
+};
+
+const getRouteOptionsTemplate = () => {
+  let options = '';
+
+  for (let i = 0; i < ROUTES.length; i++) {
+    options += getRouteOptionTemplate(ROUTES[i], i);
+  }
+
+  return options;
+};
+
 const getTicketShapeTemplate = () => {
   return /*html*/ `
       <svg

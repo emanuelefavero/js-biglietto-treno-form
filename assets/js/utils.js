@@ -1,10 +1,7 @@
-const PRICE_PER_KM = 0.21;
-const MINOR_DISCOUNT = 0.2;
-const SENIOR_DISCOUNT = 0.4;
-const MINOR_AGE = 18;
-const SENIOR_AGE = 65;
-const MAX_KM = 5000;
-const ROUTE_SEPARATOR = ' - ';
+const getSelectedRoute = (routeValue) => {
+  if (routeValue === '') return null;
+  return ROUTES[Number(routeValue)];
+};
 
 const getValidationMessage = (km, age) => {
   const validKm = !Number.isNaN(km) && km > 0 && km <= MAX_KM;
@@ -18,16 +15,6 @@ const getValidationMessage = (km, age) => {
   }
 
   return '';
-};
-
-const getRouteInfo = (select) => {
-  const routeName = select.selectedOptions[0].text;
-  const separatorIndex = routeName.indexOf(ROUTE_SEPARATOR);
-
-  return {
-    departure: routeName.slice(0, separatorIndex),
-    arrival: routeName.slice(separatorIndex + ROUTE_SEPARATOR.length),
-  };
 };
 
 const getDiscount = (age) => {

@@ -626,7 +626,7 @@ body {
 /* ANIMATIONS */
 @keyframes ticket-print {
   0% {
-    transform: translateY(-96%);
+    transform: translateY(-120%);
   }
 
   18% {

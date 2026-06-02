@@ -15,6 +15,7 @@ The app estimates a train fare from a selected route distance and passenger age.
 ## Solution
 
 - Open `index.html` in a browser to use the app.
+- Route data and fare constants are in `assets/js/data.js`.
 - Form logic is handled in `assets/js/main.js`.
 - Calculation helpers are in `assets/js/utils.js`.
 - Template functions for rendering the ticket are in `assets/js/templates.js`.
@@ -51,7 +52,7 @@ similar implementation or a different approach. This version turns the exercise 
 
 ## Technical Notes
 
-- Routes are handled with a simple `<select>`: each option value stores the km distance.
+- Routes are stored in `assets/js/data.js` and rendered into the `<select>` with JavaScript.
 - Form values are read with `FormData`, validated, and converted with `Number`.
 - Price rules, validation, formatting, and ticket labels are split into small helper functions.
 - The ticket is rendered from a single data object prepared in `main.js`.
