@@ -356,7 +356,7 @@ body {
   }
 
   &.is-printing {
-    animation: ticket-print 1300ms linear both;
+    animation: ticket-print 1150ms cubic-bezier(0.2, 0, 0.2, 1) both;
   }
 
   .ticket-shape {
@@ -629,32 +629,16 @@ body {
     transform: translateY(-120%);
   }
 
-  18% {
-    transform: translateY(-78%);
-  }
-
-  24% {
-    transform: translateY(-78%);
+  34% {
+    transform: translateY(-60%);
   }
 
   42% {
-    transform: translateY(-54%);
-  }
-
-  47% {
-    transform: translateY(-56%);
-  }
-
-  68% {
-    transform: translateY(-24%);
+    transform: translateY(-60%);
   }
 
   74% {
-    transform: translateY(-24%);
-  }
-
-  88% {
-    transform: translateY(-8%);
+    transform: translateY(-12%);
   }
 
   100% {
