@@ -5,7 +5,7 @@ const result = document.getElementById('result');
 const printSound = new Audio('assets/audio/ticket-print.mp3');
 
 /**
- * Orchestrator submit handler: reads form values, validates them, prepares the data object for rendering, and renders the result or error message.
+ * Orchestrator submit handler: reads form values, validates them, prepares the ticket data, and renders the result or error message.
  */
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -13,7 +13,7 @@ const handleSubmit = (event) => {
   // Read
   const formData = new FormData(form);
   const route = getSelectedRoute(formData.get('route'));
-  const km = route ? route.km : NaN; // Get km from selected route
+  const km = route ? route[ROUTE_KM] : NaN; // Get km from selected route
   const age = Number(formData.get('age'));
 
   // Validate
@@ -31,25 +31,32 @@ const handleSubmit = (event) => {
   const basePrice = calculateBasePrice(km);
   const discount = getDiscount(age);
   const price = calculatePrice(km, age);
-
-  const ticket = {
-    km,
-    age,
-    departure: route.departure,
-    arrival: route.arrival,
-    tariff: getTariffLabel(age),
-    date: formatDate(new Date()),
-    basePrice: formatPrice(basePrice),
-    discount: formatDiscount(discount),
-    finalPrice: formatPrice(price),
-    saving: formatPrice(basePrice - price),
-    hasDiscount: discount > 0,
-  };
+  const departure = route[ROUTE_DEPARTURE];
+  const arrival = route[ROUTE_ARRIVAL];
+  const tariff = getTariffLabel(age);
+  const date = formatDate(new Date());
+  const formattedBasePrice = formatPrice(basePrice);
+  const formattedDiscount = formatDiscount(discount);
+  const finalPrice = formatPrice(price);
+  const saving = formatPrice(basePrice - price);
+  const hasDiscount = discount > 0;
 
   // Render
   errorMessage.textContent = '';
   result.classList.remove('is-placeholder', 'is-printing');
-  result.innerHTML = getResultTemplate(ticket); // Render result
+  result.innerHTML = getResultTemplate(
+    km,
+    age,
+    departure,
+    arrival,
+    tariff,
+    date,
+    formattedBasePrice,
+    formattedDiscount,
+    finalPrice,
+    saving,
+    hasDiscount,
+  ); // Render result
   void result.offsetWidth; // Force animation restart on next submit
   result.classList.add('is-printing');
   playSound(printSound);

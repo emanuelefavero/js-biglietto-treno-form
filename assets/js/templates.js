@@ -2,7 +2,7 @@
 const getRouteOptionTemplate = (route, index) => {
   return /*html*/ `
       <option value="${index}">
-        ${route.departure} - ${route.arrival}
+        ${route[ROUTE_DEPARTURE]} - ${route[ROUTE_ARRIVAL]}
       </option>
     `;
 };
@@ -104,29 +104,41 @@ const getPlaceholderTemplate = () => {
     `;
 };
 
-const getResultTemplate = (ticket) => {
-  const emptyClass = ticket.hasDiscount ? '' : 'is-empty';
+const getResultTemplate = (
+  km,
+  age,
+  departure,
+  arrival,
+  tariff,
+  date,
+  basePrice,
+  discount,
+  finalPrice,
+  saving,
+  hasDiscount,
+) => {
+  const emptyClass = hasDiscount ? '' : 'is-empty';
 
   return /*html*/ `
       ${getTicketShapeTemplate()}
 
       <div class="ticket-header">
         <span class="icon"><i class="bi bi-train-front-fill"></i></span>
-        <p>${ticket.tariff}</p>
-        <strong>${ticket.date}</strong>
+        <p>${tariff}</p>
+        <strong>${date}</strong>
       </div>
 
       <div class="ticket-route">
         <span class="route-point">
-          <strong>${ticket.departure}</strong>
+          <strong>${departure}</strong>
           <small>Partenza</small>
         </span>
         <span class="route-line">
           <i class="bi bi-arrow-right" aria-hidden="true"></i>
-          <small>${ticket.km} km</small>
+          <small>${km} km</small>
         </span>
         <span class="route-point">
-          <strong>${ticket.arrival}</strong>
+          <strong>${arrival}</strong>
           <small>Arrivo</small>
         </span>
       </div>
@@ -135,7 +147,7 @@ const getResultTemplate = (ticket) => {
         <div class="details-list">
           <div>
             <dt>Età passeggero</dt>
-            <dd>${ticket.age} anni</dd>
+            <dd>${age} anni</dd>
           </div>
 
           <div>
@@ -147,8 +159,8 @@ const getResultTemplate = (ticket) => {
             <dt>Totale stimato</dt>
             <dd>
               <span class="price-summary">
-                <span class="base-price ${emptyClass}">${ticket.basePrice}</span>
-                <span class="discount ${emptyClass}">${ticket.discount}</span>
+                <span class="base-price ${emptyClass}">${basePrice}</span>
+                <span class="discount ${emptyClass}">${discount}</span>
               </span>
             </dd>
           </div>
@@ -157,10 +169,10 @@ const getResultTemplate = (ticket) => {
         <div class="price">
           <dd>
             <span class="final-price">
-              <strong>${ticket.finalPrice}</strong>
+              <strong>${finalPrice}</strong>
               <span class="saving ${emptyClass}">
                 <span>Risparmio</span>
-                <strong>${ticket.saving}</strong>
+                <strong>${saving}</strong>
               </span>
             </span>
           </dd>
