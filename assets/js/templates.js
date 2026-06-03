@@ -1,3 +1,4 @@
+// ROUTES Select Options
 const getRouteOptionTemplate = (route, index) => {
   return /*html*/ `
       <option value="${index}">
@@ -16,6 +17,7 @@ const getRouteOptionsTemplate = () => {
   return options;
 };
 
+// TICKET
 const getTicketShapeTemplate = () => {
   return /*html*/ `
       <svg

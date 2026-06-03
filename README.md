@@ -2,7 +2,7 @@
 
 Form-based JavaScript exercise from my web development course.
 
-The app estimates a train fare from a selected route distance and passenger age.
+This app estimates a train fare from a selected route distance and passenger age.
 
 ## Demo
 
