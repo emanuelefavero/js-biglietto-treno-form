@@ -400,11 +400,12 @@ body {
   .ticket-header {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 0.55rem 0.75rem;
+    gap: 0.2rem 0.75rem;
     align-items: center;
 
     @media (width >= 512px) {
       grid-template-columns: auto 1fr auto;
+      gap: 0.55rem 0.75rem;
     }
 
     .icon {
@@ -612,6 +613,10 @@ body {
     border-radius: 0 0 var(--ticket-bottom-radius) var(--ticket-bottom-radius);
     background-color: var(--card-accent);
     opacity: 0.8;
+
+    @media (width >= 1024px) {
+      padding-block: 0.85rem;
+    }
 
     &::before {
       content: '';
