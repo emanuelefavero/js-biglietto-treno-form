@@ -350,7 +350,7 @@ body {
   @media (width >= 1024px) {
     --ticket-bottom-radius: var(--radius-card);
 
-    min-height: 33rem;
+    min-height: 31rem;
   }
 
   &.is-placeholder {
@@ -400,7 +400,7 @@ body {
   .ticket-header {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 0.8rem;
+    gap: 0.55rem 0.75rem;
     align-items: center;
 
     @media (width >= 512px) {
@@ -410,10 +410,10 @@ body {
     .icon {
       display: grid;
       place-items: center;
-      width: 3rem;
+      width: 2.7rem;
       aspect-ratio: 1;
       color: var(--foreground);
-      font-size: 1.9rem;
+      font-size: 1.7rem;
     }
 
     p,
@@ -603,10 +603,10 @@ body {
     display: grid;
     place-items: center;
     align-self: end;
-    min-height: 5.8rem;
+    min-height: 4.75rem;
     margin: auto calc(var(--ticket-padding-inline) * -1)
       calc(var(--ticket-padding-block) * -1);
-    padding: 1rem var(--ticket-padding-inline);
+    padding: 0.65rem var(--ticket-padding-inline);
     overflow: hidden;
     border-top: 1.5px solid var(--border);
     border-radius: 0 0 var(--ticket-bottom-radius) var(--ticket-bottom-radius);
@@ -616,7 +616,7 @@ body {
     &::before {
       content: '';
       width: min(100%, 28rem);
-      height: 3.4rem;
+      height: 3.1rem;
       background-image: url('../img/barcode.png');
       background-repeat: no-repeat;
       background-position: center;
