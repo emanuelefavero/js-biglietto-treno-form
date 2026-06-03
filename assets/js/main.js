@@ -2,6 +2,7 @@ const form = document.querySelector('form');
 const routeSelect = document.getElementById('route');
 const errorMessage = document.getElementById('error-message');
 const result = document.getElementById('result');
+const printSound = new Audio('assets/audio/ticket-print.mp3');
 
 /**
  * Orchestrator submit handler: reads form values, validates them, prepares the data object for rendering, and renders the result or error message.
@@ -22,6 +23,7 @@ const handleSubmit = (event) => {
     result.classList.remove('is-printing');
     result.classList.add('is-placeholder');
     result.innerHTML = getPlaceholderTemplate();
+    stopSound(printSound);
     return;
   }
 
@@ -50,6 +52,7 @@ const handleSubmit = (event) => {
   result.innerHTML = getResultTemplate(ticket); // Render result
   void result.offsetWidth; // Force animation restart on next submit
   result.classList.add('is-printing');
+  playSound(printSound);
 };
 
 // Initial setup

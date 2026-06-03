@@ -71,3 +71,14 @@ const formatPrice = (price) => {
     maximumFractionDigits: 2,
   });
 };
+
+const playSound = (sound) => {
+  sound.pause();
+  sound.currentTime = 0;
+  sound.play();
+};
+
+const stopSound = (sound) => {
+  sound.pause();
+  sound.currentTime = 0;
+};
