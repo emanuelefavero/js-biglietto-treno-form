@@ -25,7 +25,7 @@ const handleSubmit = (event) => {
     result.innerHTML = getPlaceholderTemplate();
     stopSound(printSound);
 
-    // ? Focus on the invalid input
+    // Focus on the invalid input
     if (!route) {
       routeSelect.focus();
     } else {
