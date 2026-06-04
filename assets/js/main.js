@@ -24,6 +24,14 @@ const handleSubmit = (event) => {
     result.classList.add('is-placeholder');
     result.innerHTML = getPlaceholderTemplate();
     stopSound(printSound);
+
+    // ? Focus on the invalid input
+    if (!route) {
+      routeSelect.focus();
+    } else {
+      form.elements.age.focus();
+    }
+
     return;
   }
 
