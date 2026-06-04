@@ -68,8 +68,8 @@ const getPlaceholderTemplate = () => {
         </span>
       </div>
 
-      <dl class="details">
-        <div class="details-list">
+      <div class="details">
+        <dl class="details-list">
           <div>
             <dt>Età passeggero</dt>
             <dd>-- anni</dd>
@@ -89,16 +89,19 @@ const getPlaceholderTemplate = () => {
               </span>
             </dd>
           </div>
-        </div>
+        </dl>
 
-        <div class="price">
-          <dd>
-            <span class="final-price">
-              <strong>--</strong>
-            </span>
-          </dd>
-        </div>
-      </dl>
+        <dl class="price">
+          <div>
+            <dt class="visually-hidden">Totale finale</dt>
+            <dd>
+              <span class="final-price">
+                <strong>--</strong>
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </div>
 
       <div class="barcode" aria-hidden="true"></div>
     `;
@@ -143,8 +146,8 @@ const getResultTemplate = (
         </span>
       </div>
 
-      <dl class="details">
-        <div class="details-list">
+      <div class="details">
+        <dl class="details-list">
           <div>
             <dt>Età passeggero</dt>
             <dd>${age} anni</dd>
@@ -164,20 +167,23 @@ const getResultTemplate = (
               </span>
             </dd>
           </div>
-        </div>
+        </dl>
 
-        <div class="price">
-          <dd>
-            <span class="final-price">
-              <strong>${finalPrice}</strong>
-              <span class="saving ${emptyClass}">
-                <span>Risparmio</span>
-                <strong>${saving}</strong>
+        <dl class="price">
+          <div>
+            <dt class="visually-hidden">Totale finale</dt>
+            <dd>
+              <span class="final-price">
+                <strong>${finalPrice}</strong>
+                <span class="saving ${emptyClass}">
+                  <span>Risparmio</span>
+                  <strong>${saving}</strong>
+                </span>
               </span>
-            </span>
-          </dd>
-        </div>
-      </dl>
+            </dd>
+          </div>
+        </dl>
+      </div>
 
       <div class="barcode" aria-hidden="true"></div>
     `;
