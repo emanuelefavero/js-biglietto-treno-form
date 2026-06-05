@@ -365,7 +365,7 @@ body {
     min-height: 31rem;
   }
 
-  &.is-placeholder {
+  &.is-skeleton {
     opacity: 0.58;
   }
 

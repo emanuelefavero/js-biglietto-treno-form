@@ -21,8 +21,8 @@ const handleSubmit = (event) => {
   if (validationMessage) {
     errorMessage.textContent = validationMessage;
     result.classList.remove('is-printing');
-    result.classList.add('is-placeholder');
-    result.innerHTML = getPlaceholderTemplate();
+    result.classList.add('is-skeleton');
+    result.innerHTML = getSkeletonTemplate();
     stopSound(printSound);
 
     // Focus on the invalid input
@@ -51,7 +51,7 @@ const handleSubmit = (event) => {
 
   // Render
   errorMessage.textContent = '';
-  result.classList.remove('is-placeholder', 'is-printing');
+  result.classList.remove('is-skeleton', 'is-printing');
   result.innerHTML = getResultTemplate(
     km,
     age,
@@ -71,7 +71,7 @@ const handleSubmit = (event) => {
 };
 
 // Initial setup
-result.classList.add('is-placeholder'); // Result initial state (placeholder)
-result.innerHTML = getPlaceholderTemplate(); // Render placeholder
+result.classList.add('is-skeleton'); // Result initial state (skeleton)
+result.innerHTML = getSkeletonTemplate(); // Render skeleton
 routeSelect.innerHTML += getRouteOptionsTemplate(); // Render route options
 form.addEventListener('submit', handleSubmit);

@@ -43,7 +43,7 @@ const getTicketShapeTemplate = () => {
     `;
 };
 
-const getPlaceholderTemplate = () => {
+const getSkeletonTemplate = () => {
   return /*html*/ `
       ${getTicketShapeTemplate()}
 
