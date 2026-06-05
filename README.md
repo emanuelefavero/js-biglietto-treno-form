@@ -1,7 +1,5 @@
 # JS Biglietto Treno Form
 
-> Note: this `no-objects` branch contains an alternative implementation that avoids objects and uses arrays with named index constants instead.
-
 Form-based JavaScript exercise from my web development course.
 
 This app estimates a train fare from a selected route distance and passenger age.
@@ -57,7 +55,8 @@ similar implementation or a different approach. This version turns the exercise 
 - Routes are stored in `assets/js/data.js` and rendered into the `<select>` with JavaScript.
 - Form values are read with `FormData`, validated, and converted with `Number`.
 - Price rules, validation, formatting, and ticket labels are split into small helper functions.
-- The ticket is rendered from explicit variables prepared in `main.js`.
+- Routes and ticket data are represented with simple objects for readability.
+- The ticket is rendered from a single data object prepared in `main.js`.
 - The ticket shows route, tariff, base price, discount, savings, and final estimated price.
 - CSS custom properties, nesting, and semantic class names keep the layout organized and responsive.
 
