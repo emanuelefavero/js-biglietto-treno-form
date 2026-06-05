@@ -1,64 +1,75 @@
 # JS Biglietto Treno Form
 
-Form-based JavaScript exercise from my web development course.
+Esercizio JavaScript basato su form, validazione e render dinamico del risultato in pagina.
 
-This app estimates a train fare from a selected route distance and passenger age.
+L'app calcola un preventivo per un biglietto del treno partendo da una tratta selezionata e dall'età del passeggero.
 
 ## Demo
 
-- [View on GitHub Pages](https://emanuelefavero.github.io/js-biglietto-treno-form/)
+- [Apri la demo su GitHub Pages](https://emanuelefavero.github.io/js-biglietto-treno-form/)
 
-## Preview
+## Anteprima
 
-<img src="mockup.png" alt="screenshot" width="300" />
+<img src="mockup.png" alt="screenshot dell'app" width="300" />
 
-## Solution
+## Struttura Del Progetto
 
-- Open `index.html` in a browser to use the app.
-- Route data and fare constants are in `assets/js/data.js`.
-- Form logic is handled in `assets/js/main.js`.
-- Calculation helpers are in `assets/js/utils.js`.
-- Template functions for rendering the ticket are in `assets/js/templates.js`.
-- Styling is in `assets/css/style.css`.
+- `index.html`: markup della pagina, form e area del biglietto.
+- `assets/js/data.js`: costanti del calcolo e lista delle tratte disponibili.
+- `assets/js/utils.js`: funzioni per validazione, calcolo, sconti e formattazione.
+- `assets/js/templates.js`: template HTML per option, skeleton e biglietto finale.
+- `assets/js/main.js`: gestione del DOM, submit del form e render del risultato.
+- `assets/css/style.css`: stile dell'app, layout responsive e animazione del biglietto.
 
-## Assignment
+## Consegna
 
-The base exercise asks for:
+L'esercizio originale richiede di chiedere all'utente:
 
-- the number of kilometers to travel;
-- the passenger's age.
+- chilometri da percorrere;
+- età del passeggero.
 
-The teacher also encouraged us to make the solution our own, either with a
-similar implementation or a different approach. This version turns the exercise into a small fare estimator: the user selects a predefined route, and the route distance is used for the original calculation rules:
+Il prezzo viene calcolato con queste regole:
 
-- base price: `0.21 €` per km;
-- `20%` discount for minors;
-- `40%` discount for passengers aged 65 or older;
-- final price formatted in Euro.
+- prezzo base: `0.21 €` al km;
+- sconto `20%` per i minorenni;
+- sconto `40%` per i passeggeri da 65 anni in su.
 
-## Milestones
+In questa versione ho mantenuto le stesse regole di calcolo, ma ho trasformato l'esercizio in un piccolo preventivatore ferroviario. Invece di inserire manualmente i chilometri, l'utente seleziona una tratta: ogni tratta contiene partenza, arrivo e distanza in km.
 
-1. Build the calculation with two inputs, one button, and console output.
-2. Render the recap and final price directly in the page.
-3. Add a polished visual style once the logic is working.
+## Funzionalità
 
-## Test Cases
+- Le tratte vengono generate dinamicamente a partire dai dati in JavaScript.
+- Il form usa `FormData` per leggere i valori inseriti.
+- La validazione mostra messaggi personalizzati in pagina.
+- Il risultato viene mostrato come un biglietto/preventivo.
+- Il biglietto mostra tratta, km, età, tariffa, prezzo base, sconto, prezzo finale e risparmio.
+- Se non ci sono sconti, le informazioni su sconto e risparmio vengono nascoste.
+- Quando il submit è valido, parte una piccola animazione di stampa del biglietto con effetto sonoro.
 
-| Km  | Age | Expected price |
-| --- | --- | -------------- |
-| 100 | 10  | `16,80 €`      |
-| 100 | 30  | `21,00 €`      |
-| 100 | 70  | `12,60 €`      |
+## Milestone
 
-## Technical Notes
+1. Calcolo del prezzo con due input, un bottone e output in console.
+2. Render del riepilogo e del prezzo finale direttamente nella pagina.
+3. Aggiunta di uno stile più curato e responsive.
 
-- Routes are stored in `assets/js/data.js` and rendered into the `<select>` with JavaScript.
-- Form values are read with `FormData`, validated, and converted with `Number`.
-- Price rules, validation, formatting, and ticket labels are split into small helper functions.
-- Routes and ticket data are represented with simple objects for readability.
-- The ticket is rendered from a single data object prepared in `main.js`.
-- The ticket shows route, tariff, base price, discount, savings, and final estimated price.
-- CSS custom properties, nesting, and semantic class names keep the layout organized and responsive.
+## Casi Di Test
+
+| Km  | Età | Prezzo atteso |
+| --- | --- | ------------- |
+| 100 | 10  | `16,80 €`     |
+| 100 | 30  | `21,00 €`     |
+| 100 | 70  | `12,60 €`     |
+
+## Note Tecniche
+
+- Le tratte sono rappresentate come oggetti con `departure`, `arrival` e `km`.
+- Il valore della select corrisponde all'indice della tratta nell'array `ROUTES`.
+- `main.js` prepara un oggetto `ticket` e lo passa a `getResultTemplate(ticket)`.
+- Le funzioni di calcolo e formattazione sono separate dalla logica DOM.
+- Il prezzo è formattato con `toLocaleString` usando la valuta Euro.
+- Il biglietto iniziale e di errore è gestito come skeleton.
+- La forma del biglietto è disegnata con SVG, mentre il contenuto resta HTML normale.
+- Il CSS usa custom properties, nesting e classi semantiche per mantenere il codice organizzato.
 
 &nbsp;
 
@@ -66,4 +77,4 @@ similar implementation or a different approach. This version turns the exercise 
 
 &nbsp;
 
-[**Go To Top &nbsp; ⬆️**](#js-biglietto-treno-form)
+[**Torna su**](#js-biglietto-treno-form)
